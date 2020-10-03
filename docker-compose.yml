@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./phoenix
+    container_name: narutake_phoenix
+    shm_size: 512m
+    command: tail -f /dev/null
+    env_file:
+      - ./.env
+    environment:
+      - MIX_ENV=dev
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "100"
+    ports:
+      - "4000:4000"
+      - "3000:3000"
+    volumes:
+      - ./:/srv/
+
+  db:
+    image: postgres
+    container_name: narutake_phoenix_db
+    shm_size: 512m
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    volumes:
+      - ../postgresql/narutake_phoenix:/var/lib/postgresql/data
