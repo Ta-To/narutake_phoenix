@@ -1,0 +1,3 @@
+[submodule "phx_pwa"]
+	path = phx_pwa
+	url = git@github.com:Ta-To/phx_pwa.git
