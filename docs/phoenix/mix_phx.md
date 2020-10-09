@@ -22,12 +22,10 @@ mix phx.server
 
 ---
 
-Q. 現フォルダに作成したい
+Q. 現フォルダ直下に作成したい
 
 `--app` でアプリ名を指定する
 
 - `mix phx.new --live --no-dashboard --app my_app ./`
 
 ---
-
-from [docsify]()
