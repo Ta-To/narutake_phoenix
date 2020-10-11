@@ -9,6 +9,10 @@ Service Workerに対する制御を記載するJSファイル
 - sw.js 等とも訳されている様子(同じもの)
 - `https` あるいは `localhost` でしかPWAに関する機能は動作しないため注意
 
+## workbox
+
+TODO
+
 
 ## 動作確認
 
@@ -17,6 +21,9 @@ Service Workerに対する制御を記載するJSファイル
 
 ## 資料など
 
+- [プログレッシブウェブアプリ | MDN](https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps)
+- [ServiceWorker Cookbook](https://serviceworke.rs/)
+- [Get Started | Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
 
 
 ## 徒然メモ

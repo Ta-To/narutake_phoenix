@@ -2,12 +2,12 @@
 
 ## manifest.webmanifest
 
-ホーム画面への追加仕様(アイコンなど)を記載したJSON形式のファイル
+アプリの設定(アイコンなど)を記載したJSON形式のファイル
 
-- manifest.json 等とも記載あり
 - `<link rel="manifest" href="manifest.webmanifest">` 等として読み込ませる
 - `service-worker.js` には特に記載の必要なし (=直接は関係ない)
   - ChromeはService Workerを前提としているらしい (未確認)
+- manifest.json と同義
 
 
 ## 資料など
