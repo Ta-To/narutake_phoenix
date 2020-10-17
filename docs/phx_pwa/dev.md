@@ -69,15 +69,32 @@ npm install register-service-worker
 
 - ブラウザのメニューから操作して追加するのは一般的には敷居が高い
 - また、デフォルト=いきなりポップアップが表示される、と意味が分からない人を驚かす。意味が分かっている人もいらだつ(?)
-- 実装は[こちら](https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps/Add_to_home_screen)
+- 実装参考例は[こちら](https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps/Add_to_home_screen)
 
 
 ## (2) ~ プッシュ通知の実現
 
-- プッシュサーバとの通信時の暗号方式などのプロトコルがあるため、pigeonライブラリを使用する
-- Firebase は使わない方針で試す (VAPID)
+- Firebase のサービスは介さない方針で試す (VAPID)
+- まとまった資料は[こちら](https://ta-to.github.io/narutake_phoenix/#/phx_pwa/push)
 
-// とりあえずFCMのみ対応
+### 通知に対する許可を得る
+
+- 通知は、ユーザに許可してもらう必要がある
+
+### ブラウザから購読情報(配信先)をサーバに知らせる
+
+- 配信先として登録するために必要な情報をつくる
+  - endpoint: サーバが配信に使用するURL。サーバはここ(プッシュサーバ)に対して情報を送る
+  - keys: クライアントの識別情報一式
+- ブラウザはこれらの情報をServiceWorkerを介して取得する
+- その際にはどのサービスからの配信を受け取りたいかを明確にする必要がある。そのため、サービス側の公開鍵が必要になる
+  - 後述の通り、配信を実際に受け取るのはServiceWorkerのため
+  - 公開鍵は先に仕込んでおくか、APIで取得したりする
+
+### サーバからの配信を受け取る＆プッシュ通知する
+
+- 配信されると ServiceWorker のイベントとして発火する
+- ServiceWorkerに取得時の処理を記述する必要がある
 
 
 ## (3) ~ バックグラウンド処理対応
@@ -102,5 +119,51 @@ Q. beforeinstallprompt イベントが発火しない
 - https://qiita.com/ProjectEuropa/items/467ef24d0708b76f685d
 
 - また `service-worker.js` がルートフォルダ(/)においてあることを確認する
+
+---
+
+Q. クライアント側でサーバに定義済みの環境変数を参照するには？
+
+必要な環境変数をクライアントコード上で使用する
+// PWA は無関係
+
+- EnvironmentPlugin を使用する
+- 使用する環境変数を明示する（とともにデフォルトを設定する）
+- 明示した環境変数が定義済みであればサーバの環境変数が使用される
+
+``` js:webpack.config.js 抜粋
+const webpack = require('webpack');
+
+    plugins: [
+      new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+      new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'development',
+        PWA_PUBLiC_KEY: 'PUBLIC_KEY',
+      }),
+    ]
+```
+
+- [EnvironmentPluginで環境変数をコード内に渡す](https://nju33.com/webpack/EnvironmentPlugin%20%E3%81%A7%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%82%92%E3%82%B3%E3%83%BC%E3%83%89%E5%86%85%E3%81%AB%E6%B8%A1%E3%81%99)
+
+---
+
+Q. async 使用箇所で `regeneratorRuntime is not defined` エラー
+
+// PWA は無関係
+
+``` json: assets/.babelrc
+{
+  "presets": [
+    [
+      "@babel/preset-env", {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ]
+}
+```
 
 ---

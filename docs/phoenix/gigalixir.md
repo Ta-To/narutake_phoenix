@@ -73,9 +73,17 @@ Q. elixirのバージョン確認方法
 
 ---
 
-Q. Erlang/OTP のバージョン確認
+Q. Erlang/OTP のバージョン確認方法
 
 `cat /usr/local/lib/erlang/releases/22/OTP_VERSION` 等。 `which erl` が該当パスのヒントになるかもしれない
+
+---
+
+Q. Gigalixir の環境変数設定方法
+
+`gigalixir config:set MY_CONFIG=foo`
+
+- [Environment variables and secrets](https://gigalixir.readthedocs.io/en/latest/config.html?highlight=environment#environment-variables-and-secrets)
 
 ---
 
