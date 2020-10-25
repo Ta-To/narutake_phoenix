@@ -17,6 +17,10 @@ RUN mix local.hex --force && \
 # docsify
 RUN npm install docsify-cli -g
 
+# gigalixir
+RUN apt install -y python3 python3-pip git-core curl
+RUN pip3 install gigalixir
+
 RUN apt install -y inotify-tools vim lv
 
 WORKDIR /srv
