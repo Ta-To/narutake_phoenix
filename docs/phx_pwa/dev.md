@@ -103,7 +103,15 @@ npm install register-service-worker
 
 - 25分後に一回通知する
 - 5分後に再度通知する
-- 手動で停止できる
+
+### 配信元の情報を保持するプロセス(Agent)をつくる
+
+- 配信時刻になった際にプッシュ処理を行う
+- 配信後にプロセスを破棄する
+
+### 配信処理をトリガーするためのプロセス(Agent)をつくる
+
+- 定期的に、配信時刻になったプロセスがないかどうかを確認する
 
 
 ## 徒然メモ
@@ -170,5 +178,13 @@ Q. async 使用箇所で `regeneratorRuntime is not defined` エラー
   ]
 }
 ```
+
+---
+
+Q. Javascriptで現在時刻を取得する
+
+`new Date(Date.now())`
+
+- 時刻操作は `time.setMinutes(time.getMinutes()+ 25)` 等とできる
 
 ---
