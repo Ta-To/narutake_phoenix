@@ -50,6 +50,7 @@ https://github.com/GoogleChromeLabs/pwacompat
       "src": "/images/icon512.png",
       "sizes": "512x512"
     }
-  ]
+  ],
+  "permissions": ["background"],
 }
 ```

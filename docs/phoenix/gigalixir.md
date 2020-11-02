@@ -13,7 +13,11 @@
 (2020-09-22 for free より抜粋)
 
 
-## デプロイまで
+## デプロイまでの手順
+
+**アプリケーション作成**
+
+Gigalixirでアプリケーション(デプロイ先の意)を作成する
 
 **バージョン指定ファイルの作成**
 
@@ -33,15 +37,6 @@ source ~/.bash_profile
 gigalixir --help
 ```
 
-**アプリケーション確認**
-
-```
-APP_NAME=<アプリ名>
-gigalixir apps
-```
-
-// ここではすでにブラウザからアプリケーションを作成済み
-
 **データベース作成**
 
 ```
@@ -50,9 +45,9 @@ gigalixir pg -a <アプリ名>
 gigalxir config -a <アプリ名>
 ```
 
-**設定変更**
+**Phoenix側の設定変更**
 
-- host を gigalixir のドメインに設定する
+- host を Gigalixir のドメインに設定する
 - prod.secret.exx のimportをコメントアウト
 
 **アプリケーションのデプロイ**
@@ -62,6 +57,9 @@ git remote add gigalixir <用意されたリポジトリ>
 git push gigalixir master
 gigalixir run mix ecto.migrate
 ```
+
+- <用意されたリポジトリ> : GigalixirのWebページ(Setupタブ)に記載されている
+
 
 ## 徒然メモ
 

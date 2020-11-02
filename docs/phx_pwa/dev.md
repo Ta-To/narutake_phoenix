@@ -13,11 +13,11 @@ Phoenix で Progressive Web Application (PWA) 実装に関する記録
 
 ## (1) ~ ホームへのインストール の実現
 
-なにをともあれ service-worker.js を用意する必要がある
+まず service-worker.js を用意する必要がある
 
 ### register-service-worker パッケージインストール
 
-なにこれ: ServiceWorkerへの登録と各イベント処理の利便性向上のため導入
+なにこれ: ServiceWorkerへの登録と各イベント処理の利便性向上のために導入
 
 ```
 cd assets
